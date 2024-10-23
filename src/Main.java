@@ -1,7 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,13 +9,13 @@ import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
 public class Main {
-    public static void main(String[] args) throws RuntimeException {
+    public static void main(String[] args) throws RuntimeException, IOException {
         Scanner scanner = new Scanner(System.in); // Scanner pra leitura
         String menu = """
                 MENU:
                 1. Buscar um endereço pelo CEP
                 2. Buscar um CEP pelo endereço
-                3. Gerar resultados e sair
+                3. Gerar arquivo e sair
                 
                 Digite uma opção:
                 """; // Menu bonitinho
@@ -30,11 +30,17 @@ public class Main {
 
         // Início
         System.out.println("\n==BUSCA DE ENDEREÇOS==");
-
+        System.out.println("""
+                Este programa busca endereços e gera um arquivo JSON.
+                Busque pelo CEP e receba um endereço completo.
+                Busque por partes do endereço e receba um endereço completo.
+                Busque quantos endereços forem necessários, e ao sair,
+                um arquivo JSON será gerado com todos os endereços buscados.
+                """);
 
         while (opcaoMenu != 3) {
             try { // Trata exception
-                System.out.println("\n******************************\n");
+                System.out.println("******************************\n");
                 System.out.println(menu);
                 opcaoMenu = parseInt(scanner.nextLine());
 
@@ -68,10 +74,18 @@ public class Main {
                         listaEnderecos.add(cepPorEndereco[0]); // Adiciona na lista
                         System.out.println("Resultado:\n" + cepPorEndereco[0]);
                         break;
-                    case 3: // Encerra
-                        System.out.println("Finalizado");
+                    case 3: // Gera o arquivo json e encerra
+                        if (listaEnderecos.isEmpty()) { // Não gera o arquivo se a lista estiver vazia
+                            System.out.println("Programa finalizado.");
+                        }
+                        else {
+                            FileWriter gerarJson = new FileWriter("enderecos.json");
+                            gerarJson.write(gson.toJson(listaEnderecos));
+                            gerarJson.close();
+                            System.out.println("Arquivo gerado! Programa finalizado.");
+                        }
                         break;
-                    default:
+                    default: // Caso seja inserida uma opção além das possíveis
                         System.out.println("Opção inválida!");
                         break;
                 }
