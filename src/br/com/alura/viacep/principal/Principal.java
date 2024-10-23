@@ -1,3 +1,8 @@
+package br.com.alura.viacep.principal;
+
+import br.com.alura.viacep.buscas.BuscaCep;
+import br.com.alura.viacep.buscas.BuscaEndereco;
+import br.com.alura.viacep.modulos.Endereco;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
@@ -8,7 +13,7 @@ import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
 
-public class Main {
+public class Principal {
     public static void main(String[] args) throws RuntimeException, IOException {
         Scanner scanner = new Scanner(System.in); // Scanner pra leitura
         String menu = """

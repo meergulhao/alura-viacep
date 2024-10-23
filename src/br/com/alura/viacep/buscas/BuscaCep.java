@@ -1,3 +1,5 @@
+package br.com.alura.viacep.buscas;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;

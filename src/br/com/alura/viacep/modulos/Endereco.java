@@ -1,3 +1,5 @@
+package br.com.alura.viacep.modulos;
+
 public class Endereco {
     private String cep;
     private String logradouro;
