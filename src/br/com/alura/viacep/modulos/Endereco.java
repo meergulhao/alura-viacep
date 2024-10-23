@@ -1,6 +1,6 @@
 package br.com.alura.viacep.modulos;
 
-public class Endereco {
+public class Endereco { // Na aula foi criado como Record, faz sentido
     private String cep;
     private String logradouro;
     private String bairro;

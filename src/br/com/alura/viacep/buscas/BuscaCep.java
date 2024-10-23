@@ -12,6 +12,7 @@ public class BuscaCep { // Criei uma classe para buscar um CEP pelo endereço
     private String logradouro;
     private String jsonBuscaCep;
 
+    // Na aula não usaram o metodo do ViaCep de buscar pelo endereço, então pontos pra mim (=
     public BuscaCep(String uf, String localidade, String logradouro) { // Requisição para a API ViaCep no construtor
         this.uf = uf;
         this.localidade = localidade;

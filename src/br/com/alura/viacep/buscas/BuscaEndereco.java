@@ -10,7 +10,8 @@ public class BuscaEndereco { // Criei uma classe para buscar um endereço pelo C
     private String cep;
     private String jsonBuscaEndereco;
 
-    public BuscaEndereco(String cep) { // Adicionei no próprio construtor a requisição para a API ViaCep
+    // Adicionei no próprio construtor a requisição para a API ViaCep
+    public BuscaEndereco(String cep) { // Na aula não foi criado um construtor
         this.cep = cep;
         String endpoint = "https://viacep.com.br/ws/" + cep + "/json/";
 
@@ -24,7 +25,7 @@ public class BuscaEndereco { // Criei uma classe para buscar um endereço pelo C
 
             jsonBuscaEndereco = response.body();
 
-        } catch (IOException e) {
+        } catch (IOException e) { // Na aula inseriram as duas exceptions juntas, e criaram uma mensagem personalizada
             throw new RuntimeException(e);
 
         } catch (InterruptedException e) {

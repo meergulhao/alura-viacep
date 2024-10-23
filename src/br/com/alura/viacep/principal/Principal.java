@@ -29,7 +29,8 @@ public class Principal {
         // Lista de endereços para adicionar os buscados
         List<Endereco> listaEnderecos = new ArrayList<>();
 
-        Gson gson = new GsonBuilder() // Gson para ler/escrever json
+        // Gson para ler/escrever json
+        Gson gson = new GsonBuilder() // Na aula, o Gson foi adicionado e usado na classe da busca
                 .setPrettyPrinting()
                 .create();
 
@@ -50,7 +51,9 @@ public class Principal {
                 opcaoMenu = parseInt(scanner.nextLine());
 
                 switch (opcaoMenu) {
-                    case 1: // Busca um endereço pelo CEP, retorna o endereço completo
+
+                    // Busca um endereço pelo CEP, retorna o endereço completo
+                    case 1:
                         System.out.println("Digite o CEP que deseja buscar:");
 
                         // Busca o CEP digitado
@@ -58,10 +61,13 @@ public class Principal {
 
                         // Cria objeto Endereço com base no JSON da BuscaEndereco
                         Endereco enderecoPorCep = gson.fromJson(buscaEndereco.getJsonBuscaEndereco(), Endereco.class);
-                        listaEnderecos.add(enderecoPorCep); // Adiciona na lista
+                        // Adiciona na lista
+                        listaEnderecos.add(enderecoPorCep);
                         System.out.println("Resultado:\n" + enderecoPorCep);
                         break;
-                    case 2: // Busca um CEP pelo endereço, retorna o endereço completo
+
+                    // Busca um CEP pelo endereço, retorna o endereço completo
+                    case 2: // Na aula não usaram o metodo do ViaCep de buscar pelo endereço, então pontos pra mim (=
 
                         // Variáveis para a busca por endereço
                         System.out.println("Digite a UF:");
@@ -76,14 +82,17 @@ public class Principal {
 
                         // Cria objeto Endereço com base no JSON da BuscaCep
                         Endereco[] cepPorEndereco = gson.fromJson(buscaCep.getJsonBuscaCep(), Endereco[].class);
-                        listaEnderecos.add(cepPorEndereco[0]); // Adiciona na lista
+                        // Adiciona na lista
+                        listaEnderecos.add(cepPorEndereco[0]);
                         System.out.println("Resultado:\n" + cepPorEndereco[0]);
                         break;
-                    case 3: // Gera o arquivo json e encerra
+
+                    // Gera o arquivo json e encerra
+                    case 3:
                         if (listaEnderecos.isEmpty()) { // Não gera o arquivo se a lista estiver vazia
                             System.out.println("Programa finalizado.");
                         }
-                        else {
+                        else { // Na aula, o gerador de arquivo foi criado também em uma classe
                             FileWriter gerarJson = new FileWriter("enderecos.json");
                             gerarJson.write(gson.toJson(listaEnderecos));
                             gerarJson.close();
